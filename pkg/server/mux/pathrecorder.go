@@ -276,3 +276,10 @@ func (s byPrefixPriority) Less(i, j int) bool {
 
 	return strings.Compare(s[i], s[j]) < 0
 }
+
+func RedirectTo(to string) func(http.ResponseWriter, *http.Request) {
+	return func(rw http.ResponseWriter, req *http.Request) {
+		http.Redirect(rw, req, to, http.StatusFound)
+	}
+}
+
